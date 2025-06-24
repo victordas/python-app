@@ -14,7 +14,7 @@ def details():
     return jsonify({
         'time': datetime.datetime.now().strftime("%I:%M:%S%p on %B %d, %Y"),
         'hostname': socket.gethostname(),
-        'message': 'Enable CD, update installation'
+        'message': 'Update self hosted runner'
     }), 200
 
 
