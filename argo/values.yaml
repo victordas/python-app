@@ -11,7 +11,7 @@ applicationSet:
   replicas: 1
 
 global:
-  domain: python-app.local
+  domain: argocd.local
 
 certificate:
   enabled: true
