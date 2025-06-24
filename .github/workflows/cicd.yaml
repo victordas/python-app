@@ -1,4 +1,4 @@
-name: ci
+name: cicd
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  docker:
+  ci:
     runs-on: ubuntu-latest
     steps:
       -
@@ -28,3 +28,17 @@ jobs:
         with:
           push: true
           tags: davikt/python-app:${{ env.COMMIT_SHA_SHORT }}
+
+  cd:
+    needs: ci
+    runs-on: self-hosted-runners-hht6b-bdkls
+    steps:
+      - name: ArgoCD AppSync
+        shell: bash
+        run: |
+          argocd login argocd-server.argocd \
+            --insecure  \
+            --grpc-web  \
+            --username ${{ vars.ARGOCD_USERNAME }}  \
+            --password ${{ secrets.ARGOCD_PASSWORD }}
+          argocd app sync python-app
