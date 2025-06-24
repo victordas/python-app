@@ -33,6 +33,13 @@ jobs:
     needs: ci
     runs-on: self-hosted-runners-hht6b-bdkls
     steps:
+      - name: Install ArgoCD
+        shell: bash
+        run: |
+          curl -k -sSL -o https://argocd-server.argocd/download/argocd-linix-amd64
+          chmod +x argocd
+          mv ./argocd /usr/local/bin/argocd
+
       - name: ArgoCD AppSync
         shell: bash
         run: |
