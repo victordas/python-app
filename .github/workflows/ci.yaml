@@ -9,7 +9,7 @@ on:
 
 jobs:
   docker:
-    runs-on: self-hosted-runners-hht6b-bdkls
+    runs-on: ubuntu-latest
     steps:
       -
         name: Shorten commit id
